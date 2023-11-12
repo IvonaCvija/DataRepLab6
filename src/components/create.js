@@ -2,31 +2,37 @@ import { useState } from "react";
 import axios from "axios";
 
 function Create() {
-
+    // State to manage form inputs
     const [title, setTitle] = useState('');
     const [authors, setAuthors] = useState('');
     const [thumbnailUrl, setCover] = useState('');
 
+    // Function to handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Logging form input values to the console
         console.log("Title: " + title +
             " Cover: " + thumbnailUrl +
             " Authors: " + authors);
 
+        // Creating a book object with form input values
         const book = {
             title:title,
             cover:thumbnailUrl,
             author:authors
         }
 
-        //makes a http request and output to console browser
+        // Making an HTTP POST request to the server with the book data
         axios.post('http://localhost:4000/api/book',book)
+        // Handling a successful response
         .then()
+        // Handling an error response
         .catch();    
     }
 
     return (
+        // JSX rendering
         <div>
             <h2>Hello from create component!</h2>
             {/* form of type submit, invoke onSubmit when button is clicked */}
@@ -66,4 +72,5 @@ function Create() {
         </div>
     );
 }
+// Exporting the Create component as the default export
 export default Create;
